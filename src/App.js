@@ -2,6 +2,10 @@ import './App.css';
 import styled from 'styled-components';
 import React from 'react';
 
+// to parse HTML
+const cheerio = require('cheerio'); 
+
+// Styled Components
 const AppContainer = styled.div`
   height: 100vh;
   width: 100vw;
@@ -33,17 +37,20 @@ const AppName = styled.p`
 `;
 
 class App extends React.Component {
+  componentDidMount = () => {
+    const $ = cheerio.load('https://questionnaire-148920.appspot.com/swe/data.html')
+  }
+
   render() {
     return(
       <AppContainer>
         <HeadlineContainer>
           <LogoContainer>
-            <img src="phillies-logo.svg" />
+            <img src="phillies-logo.svg" alt="Phillies Logo"/>
           </LogoContainer>
           <Headline>Philadelphia Phillies R&D</Headline>
         </HeadlineContainer>
         <AppName>Qualifying Offer Calculator</AppName>
-  
       </AppContainer>
     );
   }
